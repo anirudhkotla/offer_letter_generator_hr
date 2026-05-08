@@ -1,5 +1,5 @@
 import os
-from mistralai.client.sdk import Mistral
+from mistralai import Mistral
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -27,11 +27,11 @@ Write a professional 2-3 sentence responsibility paragraph for the offer letter.
 - Formal tone suitable for an offer letter
 Return ONLY the paragraph text."""
 
-    with get_client() as client:
-        res = client.chat.complete(
-            model=MODEL,
-            messages=[{"role": "user", "content": prompt}],
-        )
+    client = get_client()
+    res = client.chat.complete(
+        model=MODEL,
+        messages=[{"role": "user", "content": prompt}],
+    )
     return res.choices[0].message.content.strip()
 
 
@@ -62,11 +62,11 @@ Beyond the specific mentioned core areas, the role also includes the following e
 
 Use plain bullet character •. No markdown bold. Return ONLY the responsibilities text."""
 
-    with get_client() as client:
-        res = client.chat.complete(
-            model=MODEL,
-            messages=[{"role": "user", "content": prompt}],
-        )
+    client = get_client()
+    res = client.chat.complete(
+        model=MODEL,
+        messages=[{"role": "user", "content": prompt}],
+    )
     return res.choices[0].message.content.strip()
 
 
@@ -81,9 +81,9 @@ Instruction: {instruction}
 Rewrite according to the instruction. Keep a formal, professional tone for an Indian corporate offer letter.
 Return ONLY the rewritten text."""
 
-    with get_client() as client:
-        res = client.chat.complete(
-            model=MODEL,
-            messages=[{"role": "user", "content": prompt}],
-        )
+    client = get_client()
+    res = client.chat.complete(
+        model=MODEL,
+        messages=[{"role": "user", "content": prompt}],
+    )
     return res.choices[0].message.content.strip()
